@@ -15,8 +15,6 @@ class PostsNew extends Component {
     );
   }
 
-
-
   render() {
     return (
       <form>
@@ -26,8 +24,8 @@ class PostsNew extends Component {
           component={this.renderField}
         />
         <Field
-          name='tags'
-          label='Tags'
+          name='categories'
+          label='Categories'
           component={this.renderField}
         />
         <Field
@@ -40,6 +38,29 @@ class PostsNew extends Component {
   }
 }
 
+function validate(values) { // Values is an object of values that the user entered in the form
+  const errors = {};
+
+  // Validate the input from 'values'
+  if (!values.title) {
+    errors.title = 'Enter a title name';
+  }
+
+  if (!value.categories) {
+    errors.categories = 'Enter a category';
+  }
+
+  if (!value.content) {
+    errors.content = 'Enter a some content';
+  }
+
+
+  // If errors is empty, the form is fine to submit
+  // If errors has an properties, redux assumes form is invalid
+  return errors;
+}
+
 export default reduxForm({
+  validate, // validate function for reduxForm. validate = validate: validate
   form: 'PostsNewForm'  // form = name of the form
 })(PostsNew);
