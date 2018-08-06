@@ -2,23 +2,33 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 
 class PostsNew extends Component {
-  renderTitleField(field) { // Field contains event handlers to the event were wiring up
+  renderField(field) { // Field contains event handlers to the event were wiring up
     return (
-      <div>
-      <input
-        type='text'
-        {...field.input}
-      />
+      <div className='form-group'>
+        <label>{field.label}</label>
+        <input
+          className='form-control'
+          type='text'
+          {...field.input}
+        />
       </div>
     );
   }
+
+
 
   render() {
     return (
       <form>
         <Field
           name='title'
-          component={this.renderTitleField}
+          label='Title'
+          component={this.renderField}
+        />
+        <Field
+          name='tags'
+          label='Tags'
+          component={this.renderField}
         />
       </form>
     );
